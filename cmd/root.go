@@ -23,18 +23,11 @@ var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "k8s-source",
+	Use:   "source-template",
 	Short: "Remote primary source for kubernetes",
-	Long: `This is designed to be run as part of srcman
-(https://github.com/dylanratcliffe/srcman)
+	Long: `A template for building sources.
 
-It responds to requests for items relating to kubernetes clusters.
-Each namespace is a separate context, as are non-namespaced resources
-within each cluster.
-
-This can be configured using a yaml file and the --config flag, or by 
-using appropriately named environment variables, for example "nats-name-prefix"
-can be set using an environment variable named "NATS_NAME_PREFIX"
+Edit this once you have created your source
 `,
 	Run: func(cmd *cobra.Command, args []string) {
 		// Get srcman supplied config
