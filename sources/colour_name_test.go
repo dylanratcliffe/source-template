@@ -20,6 +20,11 @@ func TestGet(t *testing.T) {
 			ExpectedError: nil,
 			ExpectedItems: &ExpectedItems{
 				NumItems: 1,
+				ExpectedAttributes: []map[string]interface{}{
+					{
+						"name": "GreenYellow",
+					},
+				},
 			},
 		},
 		{
