@@ -101,6 +101,10 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 						t.Fatalf("error string did not match regex %v, raw value: %v", ee.ErrorStringRegex, ire.ErrorString)
 					}
 				}
+			} else {
+				if err != nil {
+					t.Fatal(err)
+				}
 			}
 
 			if ei := test.ExpectedItems; ei != nil {
@@ -123,14 +127,33 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 							t.Error(err)
 						}
 
-						if value != expectedValue {
-							t.Errorf("expected attribute %v to be %v, got %v", key, expectedValue, value)
+						// Deal with comparing slices
+						if expectedStringSlice, ok := expectedValue.([]interface{}); ok {
+							if !interfaceSliceEqual(expectedStringSlice, value.([]interface{})) {
+								t.Errorf("expected attribute %v to be %v, got %v", key, expectedValue, value)
+							}
+						} else {
+							if value != expectedValue {
+								t.Errorf("expected attribute %v to be %v, got %v", key, expectedValue, value)
+							}
 						}
 					}
 				}
 			}
 		})
 	}
+}
+
+func interfaceSliceEqual(a, b []interface{}) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i, v := range a {
+		if v != b[i] {
+			return false
+		}
+	}
+	return true
 }
 
 // RunItemValidationTest Checks an item to ensure it is a valid SDP item. This includes
@@ -181,14 +204,18 @@ func RunItemValidationTest(t *testing.T, i *sdp.Item) {
 			t.Errorf("LinkedItem %v of item %v has empty UniqueAttributeValue", index, i.GloballyUniqueName())
 		}
 
-		// We don't need to check for an empty context here since if it's empty
-		// it will just inherit the context of the parent
+		if linkedItem.GetContext() == "" {
+			t.Errorf("LinkedItem %v of item %v has empty Context", index, i.GloballyUniqueName())
+		}
 	}
 
 	for index, linkedItemRequest := range i.GetLinkedItemRequests() {
 		if linkedItemRequest.GetType() == "" {
-			t.Errorf("LinkedItemRequest %v of item %v has empty type", index, i.GloballyUniqueName())
+			t.Errorf("LinkedItemRequest %v of item %v has empty Type", index, i.GloballyUniqueName())
+		}
 
+		if linkedItemRequest.GetContext() == "" {
+			t.Errorf("LinkedItemRequest %v of item %v has empty Context", index, i.GloballyUniqueName())
 		}
 
 		if linkedItemRequest.GetMethod() != sdp.RequestMethod_FIND {
