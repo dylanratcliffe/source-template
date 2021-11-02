@@ -10,8 +10,8 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/dylanratcliffe/discovery"
-	"github.com/dylanratcliffe/source-template/sources"
+	"github.com/overmindtech/discovery"
+	"github.com/overmindtech/source-template/sources"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
 

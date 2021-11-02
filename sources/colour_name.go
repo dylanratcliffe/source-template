@@ -3,14 +3,14 @@ package sources
 import (
 	"fmt"
 
-	"github.com/dylanratcliffe/sdp-go"
+	"github.com/overmindtech/sdp-go"
 )
 
 // This is an example source that returns the details of given colours in HTML.
 // The source needs to implement all of the methods that satisfy the
 // discovery.Source interface:
 //
-// https://pkg.go.dev/github.com/dylanratcliffe/discovery#Source
+// https://pkg.go.dev/github.com/overmindtech/discovery#Source
 //
 
 // Database of standard colour names
@@ -217,10 +217,10 @@ func (s *ColourNameSource) Get(itemContext string, query string) (*sdp.Item, err
 		//
 		// Sources should return errors of type sdp.ItemRequestError. Details of
 		// what these errors should contain can be found in the SDP
-		// documentation: https://github.com/dylanratcliffe/sdp#errors
+		// documentation: https://github.com/overmindtech/sdp#errors
 		//
 		// Or the Go Docs:
-		// https://pkg.go.dev/github.com/dylanratcliffe/sdp-go#ItemRequestError_ErrorType
+		// https://pkg.go.dev/github.com/overmindtech/sdp-go#ItemRequestError_ErrorType
 		return nil, &sdp.ItemRequestError{
 			ErrorType:   sdp.ItemRequestError_NOTFOUND,
 			ErrorString: fmt.Sprintf("colour %v not recognized", query),

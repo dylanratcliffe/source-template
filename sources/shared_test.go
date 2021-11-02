@@ -4,8 +4,8 @@ import (
 	"regexp"
 	"testing"
 
-	"github.com/dylanratcliffe/discovery"
-	"github.com/dylanratcliffe/sdp-go"
+	"github.com/overmindtech/discovery"
+	"github.com/overmindtech/sdp-go"
 )
 
 // This file contains shared testing libraries to make testing sources easier
