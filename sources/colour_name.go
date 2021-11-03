@@ -286,3 +286,15 @@ func (s *ColourNameSource) Find(itemContext string) ([]*sdp.Item, error) {
 func (s *ColourNameSource) Weight() int {
 	return 100
 }
+
+// Hidden Reports whether the items returned by this source should be marked as
+// hidden in their metadata. Hidden items won't be shown in GUIs or stored in
+// the database. This method is optional and since most sources aren't going to
+// be hidden, you usually don't need it and it can simply be removed
+//
+// Uncomment this if you need the source to be hidden, if you're not sure, just
+// delete this whole comment section
+//
+// func (s *ColourNameSource) Hidden() bool {
+//  return false
+// }
