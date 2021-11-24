@@ -1,6 +1,7 @@
 package sources
 
 import (
+	"context"
 	"fmt"
 
 	"github.com/overmindtech/sdp-go"
@@ -199,8 +200,11 @@ func (s *ColourNameSource) Contexts() []string {
 }
 
 // Get Get a single item with a given context and query. The item returned
-// should have a UniqueAttributeValue that matches the `query` parameter
-func (s *ColourNameSource) Get(itemContext string, query string) (*sdp.Item, error) {
+// should have a UniqueAttributeValue that matches the `query` parameter. The
+// ctx parameter contains a golang context object which should be used to allow
+// this source to timeout or be cancelled when executing potentially
+// long-running actions
+func (s *ColourNameSource) Get(ctx context.Context, itemContext string, query string) (*sdp.Item, error) {
 	if itemContext != "global" {
 		return nil, &sdp.ItemRequestError{
 			ErrorType:   sdp.ItemRequestError_NOCONTEXT,
@@ -208,6 +212,13 @@ func (s *ColourNameSource) Get(itemContext string, query string) (*sdp.Item, err
 			Context:     itemContext,
 		}
 	}
+
+	// NOTE: In this source there isn't anything that we need to pass `ctx` too
+	// as it is just manipulating objects in memory and will be extremely fast.
+	// If however we needed to run an external command or make a call over the
+	// network, we should make sure to re-use the ctx object when making those
+	// calls to ensure that they will be calls to ensure that they will be
+	// stopped if the query is cancelled or reaches a timeout
 
 	// Look up the colour in the database
 	hexValue, found := Colours[query]
@@ -261,13 +272,13 @@ func (s *ColourNameSource) Get(itemContext string, query string) (*sdp.Item, err
 }
 
 // Find Finds all items in a given context
-func (s *ColourNameSource) Find(itemContext string) ([]*sdp.Item, error) {
+func (s *ColourNameSource) Find(ctx context.Context, itemContext string) ([]*sdp.Item, error) {
 	items := make([]*sdp.Item, 0)
 
 	// Loop over all the colours and use a Get() request to resolve them to an
 	// item
 	for name := range Colours {
-		item, err := s.Get(itemContext, name)
+		item, err := s.Get(ctx, itemContext, name)
 
 		if err != nil {
 			return nil, err
