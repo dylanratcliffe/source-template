@@ -1,6 +1,7 @@
 package sources
 
 import (
+	"context"
 	"regexp"
 	"testing"
 
@@ -58,7 +59,7 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 
 			switch test.Method {
 			case sdp.RequestMethod_FIND:
-				items, err = source.Find(test.ItemContext)
+				items, err = source.Find(context.Background(), test.ItemContext)
 			case sdp.RequestMethod_SEARCH:
 				searchable, ok := source.(discovery.SearchableSource)
 
@@ -66,9 +67,9 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					t.Fatal("Supplied source did not fulfill discovery.SearchableSource interface. Cannot execute search tests against this source")
 				}
 
-				items, err = searchable.Search(test.ItemContext, test.Query)
+				items, err = searchable.Search(context.Background(), test.ItemContext, test.Query)
 			case sdp.RequestMethod_GET:
-				item, err = source.Get(test.ItemContext, test.Query)
+				item, err = source.Get(context.Background(), test.ItemContext, test.Query)
 				items = []*sdp.Item{item}
 			default:
 				t.Fatalf("Test Method invalid: %v. Should be one of: sdp.RequestMethod_FIND, sdp.RequestMethod_SEARCH, sdp.RequestMethod_GET", test.Method)
