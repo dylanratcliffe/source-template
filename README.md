@@ -20,8 +20,6 @@ Follow this getting started guide to copy this template and customize it to your
     ```
 1. You're now ready to start writing your sources, have look in the `sources/` folder for some working example sources that you can base your source on. Remember to delete these though once you're done
 1. While you're going you should be writing tests to ensure that your source behaves the way you expect in different scenarios.
-1. In order for automatic Docker builds and pushes to work, you must create a repository secret called `CR_PAT` which contains a token that can push ti Github Container Registry. Instructions for creating this cn be found [here](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry#authenticating-to-the-container-registry)
-
 
 ## Config
 
