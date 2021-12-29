@@ -16,5 +16,5 @@ jobs:
           # which you won't have permission to do, and it'll fail
           package_name: source-template
           org: overmindtech
-          token: ${{ secrets.GITHUB_TOKEN }}
-          token_type: Actions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
