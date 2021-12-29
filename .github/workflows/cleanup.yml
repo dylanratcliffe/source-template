@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: purge packages
-        uses: dylanratcliffe/delete-untagged-containers@main
+        uses: dylanratcliffe/delete-untagged-containers@actions-auth
         with:
           # Note that you'll need to change the `package_name` and `user` fields
           # here to whatever your new source's package is going to be called,
@@ -16,4 +16,3 @@ jobs:
           # which you won't have permission to do, and it'll fail
           package_name: source-template
           org: overmindtech
-          token: ${{ secrets.CR_PAT }}
