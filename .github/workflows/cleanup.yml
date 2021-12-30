@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: purge packages
-        uses: dylanratcliffe/delete-untagged-containers@actions-auth
+        uses: dylanratcliffe/delete-untagged-containers@main
         with:
           # Note that you'll need to change the `package_name` and `user` fields
           # here to whatever your new source's package is going to be called,
