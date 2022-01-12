@@ -174,6 +174,12 @@ type ColourNameSource struct {
 
 // Type The type of items that this source is capable of finding
 func (s *ColourNameSource) Type() string {
+	// Type names should match RFC1123 (lower case). This means the name must:
+	//
+	// 	* contain at most 63 characters
+	// 	* contain only lowercase alphanumeric characters or '-'
+	// 	* start with an alphanumeric character
+	// 	* end with an alphanumeric character
 	return "colour"
 }
 
