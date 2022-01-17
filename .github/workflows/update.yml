@@ -26,14 +26,11 @@ jobs:
 
     - name: Download new modules
       run: go mod vendor
-
-    - name: Run Tests
-      run: go test ./... -race
     
     - name: Commit changes
       uses: devops-infra/action-commit-push@master
       with:
-        github_token: "${{ secrets.GITHUB_TOKEN }}"
+        github_token: "${{ secrets.PUSH_PAT }}"
         commit_prefix: "[AUTO]"
         commit_message: "Updated dependencies"
         force: false
@@ -42,7 +39,7 @@ jobs:
     - name: Create pull request
       uses: devops-infra/action-pull-request@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.PUSH_PAT }}
         source_branch: updated_deps
         target_branch: main
         title: "[AUTO] Updated Dependencies"
