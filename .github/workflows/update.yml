@@ -27,9 +27,6 @@ jobs:
     - name: Download new modules
       run: go mod vendor
     
-    - name: Run tests
-      run: go test ./... -race
-
     - name: Commit changes
       uses: devops-infra/action-commit-push@master
       with:
