@@ -61,15 +61,18 @@ Edit this once you have created your source
 		}).Info("Got config")
 
 		e := discovery.Engine{
-			Name: "kubernetes-source",
+			Name: "source-template",
 			NATSOptions: &discovery.NATSOptions{
-				URLs:           natsServers,
-				ConnectionName: fmt.Sprintf("%v.%v", natsNamePrefix, hostname),
-				ConnectTimeout: (10 * time.Second), // TODO: Make configurable
-				NumRetries:     999,                // We are in a container so wait forever
-				CAFile:         natsCAFile,
-				NkeyFile:       natsNKeyFile,
-				JWTFile:        natsJWTFile,
+				URLs:            natsServers,
+				ConnectionName:  fmt.Sprintf("%v.%v", natsNamePrefix, hostname),
+				ConnectTimeout:  (10 * time.Second), // TODO: Make configurable
+				MaxReconnect:    999,                // We are in a container so wait forever
+				ReconnectWait:   2 * time.Second,
+				ReconnectJitter: 2 * time.Second,
+				QueueName:       "source-template", // This should be the same as your engine name
+				CAFile:          natsCAFile,
+				NkeyFile:        natsNKeyFile,
+				JWTFile:         natsJWTFile,
 			},
 			MaxParallelExecutions: maxParallel,
 		}
@@ -104,16 +107,6 @@ Edit this once you have created your source
 			log.WithFields(log.Fields{
 				"error": err,
 			}).Error("Could not start HTTP server for /healthz health checks")
-
-			os.Exit(1)
-		}
-
-		err = e.Connect()
-
-		if err != nil {
-			log.WithFields(log.Fields{
-				"error": err,
-			}).Error("Could not connect to NATS")
 
 			os.Exit(1)
 		}
