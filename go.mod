@@ -1,6 +1,6 @@
 module github.com/overmindtech/source-template
 
-go 1.17
+go 1.18
 
 // Direct dependencies
 require (
