@@ -14,6 +14,7 @@ import (
 	"github.com/nats-io/jwt/v2"
 	"github.com/nats-io/nkeys"
 	"github.com/overmindtech/discovery"
+	"github.com/overmindtech/multiconn"
 	"github.com/overmindtech/source-template/sources"
 	"github.com/spf13/cobra"
 	"github.com/spf13/pflag"
@@ -51,7 +52,7 @@ Edit this once you have created your source
 		yourCustomFlag := viper.GetString("your-custom-flag")
 
 		var natsNKeySeedLog string
-		var tokenClient discovery.TokenClient
+		var tokenClient multiconn.TokenClient
 
 		if natsNKeySeed != "" {
 			natsNKeySeedLog = "[REDACTED]"
@@ -82,16 +83,20 @@ Edit this once you have created your source
 
 		e := discovery.Engine{
 			Name: "source-template",
-			NATSOptions: &discovery.NATSOptions{
-				URLs:            natsServers,
-				ConnectionName:  fmt.Sprintf("%v.%v", natsNamePrefix, hostname),
-				ConnectTimeout:  (10 * time.Second), // TODO: Make configurable
-				MaxReconnect:    999,                // We are in a container so wait forever
-				ReconnectWait:   2 * time.Second,
-				ReconnectJitter: 2 * time.Second,
-				QueueName:       "source-template", // This should be the same as your engine name
-				TokenClient:     tokenClient,
+			NATSOptions: &multiconn.NATSConnectionOptions{
+				CommonOptions: multiconn.CommonOptions{
+					NumRetries: -1,
+					RetryDelay: 5 * time.Second,
+				},
+				Servers:           natsServers,
+				ConnectionName:    fmt.Sprintf("%v.%v", natsNamePrefix, hostname),
+				ConnectionTimeout: (10 * time.Second), // TODO: Make configurable
+				MaxReconnects:     999,                // We are in a container so wait forever
+				ReconnectWait:     2 * time.Second,
+				ReconnectJitter:   2 * time.Second,
+				TokenClient:       tokenClient,
 			},
+			NATSQueueName:         "source-template", // This should be the same as your engine name
 			MaxParallelExecutions: maxParallel,
 		}
 
@@ -228,7 +233,7 @@ func initConfig() {
 
 // createTokenClient Creates a basic token client that will authenticate to NATS
 // using the given values
-func createTokenClient(natsJWT string, natsNKeySeed string) (discovery.TokenClient, error) {
+func createTokenClient(natsJWT string, natsNKeySeed string) (multiconn.TokenClient, error) {
 	var kp nkeys.KeyPair
 	var err error
 
@@ -248,5 +253,5 @@ func createTokenClient(natsJWT string, natsNKeySeed string) (discovery.TokenClie
 		return nil, fmt.Errorf("could not parse nats-nkey-seed: %v", err)
 	}
 
-	return discovery.NewBasicTokenClient(natsJWT, kp), nil
+	return multiconn.NewBasicTokenClient(natsJWT, kp), nil
 }
