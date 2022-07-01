@@ -293,6 +293,11 @@ func (s *ColourNameSource) Find(ctx context.Context, itemContext string) ([]*sdp
 		items = append(items, item)
 	}
 
+	// NOTE: If we were to find nothing, we should return a
+	// `sdp.ItemRequestError_NOTFOUND` to indicate that we successfully looked
+	// for items, but didn't find any. This result will then be cached. If a
+	// source returns no items and no error nothing will be cached.
+
 	return items, nil
 }
 
