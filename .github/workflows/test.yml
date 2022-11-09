@@ -46,7 +46,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ghcr.io/overmindtech/source-templates
+          images: ghcr.io/overmindtech/source-template
           tags: |
             type=ref,event=branch
             type=ref,event=pr
