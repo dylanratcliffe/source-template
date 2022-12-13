@@ -14,7 +14,7 @@ func TestGet(t *testing.T) {
 	tests := []SourceTest{
 		{
 			Name:          "Getting a known colour",
-			ItemContext:   "global",
+			ItemScope:     "global",
 			Query:         "GreenYellow",
 			Method:        sdp.RequestMethod_GET,
 			ExpectedError: nil,
@@ -28,26 +28,26 @@ func TestGet(t *testing.T) {
 			},
 		},
 		{
-			Name:        "Getting an unknown colour",
-			ItemContext: "global",
-			Query:       "UpsideDownBlack",
-			Method:      sdp.RequestMethod_GET,
+			Name:      "Getting an unknown colour",
+			ItemScope: "global",
+			Query:     "UpsideDownBlack",
+			Method:    sdp.RequestMethod_GET,
 			ExpectedError: &ExpectedError{
 				Type:             sdp.ItemRequestError_NOTFOUND,
 				ErrorStringRegex: regexp.MustCompile("not recognized"),
-				Context:          "global",
+				Scope:            "global",
 			},
 			ExpectedItems: nil,
 		},
 		{
-			Name:        "Getting an unknown context",
-			ItemContext: "wonkySpace",
-			Query:       "Red",
-			Method:      sdp.RequestMethod_GET,
+			Name:      "Getting an unknown scope",
+			ItemScope: "wonkySpace",
+			Query:     "Red",
+			Method:    sdp.RequestMethod_GET,
 			ExpectedError: &ExpectedError{
-				Type:             sdp.ItemRequestError_NOCONTEXT,
+				Type:             sdp.ItemRequestError_NOSCOPE,
 				ErrorStringRegex: regexp.MustCompile("colours are only supported"),
-				Context:          "wonkySpace",
+				Scope:            "wonkySpace",
 			},
 			ExpectedItems: nil,
 		},
@@ -56,25 +56,25 @@ func TestGet(t *testing.T) {
 	RunSourceTests(t, tests, &ColourNameSource{})
 }
 
-func TestFind(t *testing.T) {
+func TestList(t *testing.T) {
 	tests := []SourceTest{
 		{
-			Name:          "Using correct context",
-			ItemContext:   "global",
-			Method:        sdp.RequestMethod_FIND,
+			Name:          "Using correct scope",
+			ItemScope:     "global",
+			Method:        sdp.RequestMethod_LIST,
 			ExpectedError: nil,
 			ExpectedItems: &ExpectedItems{
 				NumItems: 147,
 			},
 		},
 		{
-			Name:        "Using incorrect context",
-			ItemContext: "somethingElse",
-			Method:      sdp.RequestMethod_FIND,
+			Name:      "Using incorrect scope",
+			ItemScope: "somethingElse",
+			Method:    sdp.RequestMethod_LIST,
 			ExpectedError: &ExpectedError{
-				Type:             sdp.ItemRequestError_NOCONTEXT,
+				Type:             sdp.ItemRequestError_NOSCOPE,
 				ErrorStringRegex: regexp.MustCompile("colours are only supported"),
-				Context:          "somethingElse",
+				Scope:            "somethingElse",
 			},
 			ExpectedItems: nil,
 		},

@@ -188,34 +188,34 @@ func (s *ColourNameSource) Name() string {
 	return "colour-name"
 }
 
-// List of contexts that this source is capable of find items for. If the
-// source supports all contexts the special value `AllContexts` ("*")
+// List of scopes that this source is capable of find items for. If the
+// source supports all scopes the special value `AllScopes` ("*")
 // should be used
-func (s *ColourNameSource) Contexts() []string {
+func (s *ColourNameSource) Scopes() []string {
 	// Names of colours are globally unique, there isn't a difference between
-	// "red" in one context and "red" in another context as they are defined by
+	// "red" in one scope and "red" in another scope as they are defined by
 	// w3.org: https://www.w3.org/TR/css-color-4/
 	//
-	// Some types of items have a specific context, for example a user named
+	// Some types of items have a specific scope, for example a user named
 	// "admin" on one computer isn't the same user as a user named "admin" on a
 	// different computer, even though they have the same name, they have a
-	// different context.
+	// different scope.
 	return []string{
 		"global", // This is a reserved word meaning that the items should be considered globally unique
 	}
 }
 
-// Get Get a single item with a given context and query. The item returned
+// Get Get a single item with a given scope and query. The item returned
 // should have a UniqueAttributeValue that matches the `query` parameter. The
 // ctx parameter contains a golang context object which should be used to allow
 // this source to timeout or be cancelled when executing potentially
 // long-running actions
-func (s *ColourNameSource) Get(ctx context.Context, itemContext string, query string) (*sdp.Item, error) {
-	if itemContext != "global" {
+func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) (*sdp.Item, error) {
+	if scope != "global" {
 		return nil, &sdp.ItemRequestError{
-			ErrorType:   sdp.ItemRequestError_NOCONTEXT,
-			ErrorString: "colours are only supported in the 'global' context",
-			Context:     itemContext,
+			ErrorType:   sdp.ItemRequestError_NOSCOPE,
+			ErrorString: "colours are only supported in the 'global' scope",
+			Scope:       scope,
 		}
 	}
 
@@ -241,7 +241,7 @@ func (s *ColourNameSource) Get(ctx context.Context, itemContext string, query st
 		return nil, &sdp.ItemRequestError{
 			ErrorType:   sdp.ItemRequestError_NOTFOUND,
 			ErrorString: fmt.Sprintf("colour %v not recognized", query),
-			Context:     "global",
+			Scope:       "global",
 		}
 	}
 
@@ -257,7 +257,7 @@ func (s *ColourNameSource) Get(ctx context.Context, itemContext string, query st
 		return nil, &sdp.ItemRequestError{
 			ErrorType:   sdp.ItemRequestError_OTHER,
 			ErrorString: err.Error(),
-			Context:     "global",
+			Scope:       "global",
 		}
 	}
 
@@ -266,7 +266,7 @@ func (s *ColourNameSource) Get(ctx context.Context, itemContext string, query st
 		Type:            "colour",
 		UniqueAttribute: "name",
 		Attributes:      attributes,
-		Context:         "global",
+		Scope:           "global",
 		// If this item had linked items we would supply requests that the user
 		// (or system) could execute here. However for the purposes of this
 		// example we are going to say that colours aren't "related" to each
@@ -277,14 +277,14 @@ func (s *ColourNameSource) Get(ctx context.Context, itemContext string, query st
 	return &item, nil
 }
 
-// Find Finds all items in a given context
-func (s *ColourNameSource) Find(ctx context.Context, itemContext string) ([]*sdp.Item, error) {
+// List Lists all items in a given scope
+func (s *ColourNameSource) List(ctx context.Context, scope string) ([]*sdp.Item, error) {
 	items := make([]*sdp.Item, 0)
 
 	// Loop over all the colours and use a Get() request to resolve them to an
 	// item
 	for name := range Colours {
-		item, err := s.Get(ctx, itemContext, name)
+		item, err := s.Get(ctx, scope, name)
 
 		if err != nil {
 			return nil, err

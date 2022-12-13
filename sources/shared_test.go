@@ -19,9 +19,9 @@ type ExpectedError struct {
 	// leave as `nil`if you don't want to check this
 	ErrorStringRegex *regexp.Regexp
 
-	// The context that the error should come from. Leave as "" if you don't
+	// The scope that the error should come from. Leave as "" if you don't
 	// want to check this
-	Context string
+	Scope string
 }
 
 type ExpectedItems struct {
@@ -38,8 +38,8 @@ type ExpectedItems struct {
 type SourceTest struct {
 	// Name of the test for logging
 	Name string
-	// The context to be passed to the Get() request
-	ItemContext string
+	// The scope to be passed to the Get() request
+	ItemScope string
 	// The query to be passed
 	Query string
 	// The method that should be used
@@ -58,8 +58,8 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 			var err error
 
 			switch test.Method {
-			case sdp.RequestMethod_FIND:
-				items, err = source.Find(context.Background(), test.ItemContext)
+			case sdp.RequestMethod_LIST:
+				items, err = source.List(context.Background(), test.ItemScope)
 			case sdp.RequestMethod_SEARCH:
 				searchable, ok := source.(discovery.SearchableSource)
 
@@ -67,12 +67,12 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					t.Fatal("Supplied source did not fulfill discovery.SearchableSource interface. Cannot execute search tests against this source")
 				}
 
-				items, err = searchable.Search(context.Background(), test.ItemContext, test.Query)
+				items, err = searchable.Search(context.Background(), test.ItemScope, test.Query)
 			case sdp.RequestMethod_GET:
-				item, err = source.Get(context.Background(), test.ItemContext, test.Query)
+				item, err = source.Get(context.Background(), test.ItemScope, test.Query)
 				items = []*sdp.Item{item}
 			default:
-				t.Fatalf("Test Method invalid: %v. Should be one of: sdp.RequestMethod_FIND, sdp.RequestMethod_SEARCH, sdp.RequestMethod_GET", test.Method)
+				t.Fatalf("Test Method invalid: %v. Should be one of: sdp.RequestMethod_LIST, sdp.RequestMethod_SEARCH, sdp.RequestMethod_GET", test.Method)
 			}
 
 			// If an error was expected then validate that it was found
@@ -91,9 +91,9 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					t.Fatalf("error type was %v, expected %v", ire.ErrorType, ee.Type)
 				}
 
-				if ee.Context != "" {
-					if ee.Context != ire.Context {
-						t.Fatalf("error context was %v, expected %v", ire.Context, ee.Context)
+				if ee.Scope != "" {
+					if ee.Scope != ire.Scope {
+						t.Fatalf("error scope was %v, expected %v", ire.Scope, ee.Scope)
 					}
 				}
 
