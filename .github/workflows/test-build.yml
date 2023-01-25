@@ -1,4 +1,4 @@
-name: Tests
+name: Test & Build
 on: push
 jobs:
   test:
@@ -73,3 +73,13 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64,linux/arm64
+
+      - name: Prepare Deployment
+        run: |
+          echo "ghcr.io/overmindtech/source-template@${{ steps.push.outputs.digest }}" | tee source-template.imageref
+
+      - name: Upload Deployment File
+        uses: actions/upload-artifact@v3
+        with:
+          name: source-template.imageref
+          path: source-template.imageref
