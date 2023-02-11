@@ -270,7 +270,15 @@ func (t TerminationLogHook) Fire(e *log.Entry) error {
 		return err
 	}
 
-	_, err = tLog.WriteString(e.Message + "\n")
+	var message string
+
+	message = e.Message
+
+	for k, v := range e.Data {
+		message = fmt.Sprintf("%v %v=%v", message, k, v)
+	}
+
+	_, err = tLog.WriteString(message)
 
 	return err
 }
