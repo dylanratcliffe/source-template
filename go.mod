@@ -6,9 +6,9 @@ go 1.19
 require (
 	github.com/nats-io/jwt/v2 v2.3.0
 	github.com/nats-io/nkeys v0.3.0
-	github.com/overmindtech/connect v0.8.2
-	github.com/overmindtech/discovery v0.17.2
-	github.com/overmindtech/sdp-go v0.15.5
+	github.com/overmindtech/connect v0.8.3
+	github.com/overmindtech/discovery v0.17.3
+	github.com/overmindtech/sdp-go v0.16.0
 	github.com/sirupsen/logrus v1.9.0
 	github.com/spf13/cobra v1.6.1
 	github.com/spf13/pflag v1.0.5
@@ -37,11 +37,13 @@ require (
 	github.com/blevesearch/zapx/v15 v15.3.8 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
+	github.com/getsentry/sentry-go v0.18.0 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang/geo v0.0.0-20210211234256-740aa86cb551 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/golang/snappy v0.0.4 // indirect
+	github.com/google/btree v1.1.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
@@ -53,8 +55,8 @@ require (
 	github.com/mschoch/smat v0.2.0 // indirect
 	github.com/nats-io/nats.go v1.23.0 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
-	github.com/overmindtech/api-client v0.11.1 // indirect
-	github.com/overmindtech/sdpcache v0.4.1 // indirect
+	github.com/overmindtech/api-client v0.12.0 // indirect
+	github.com/overmindtech/sdpcache v1.2.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
 	github.com/spf13/afero v1.9.3 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
@@ -66,7 +68,7 @@ require (
 	go.opentelemetry.io/otel/metric v0.36.0 // indirect
 	go.opentelemetry.io/otel/trace v1.13.0 // indirect
 	golang.org/x/crypto v0.6.0 // indirect
-	golang.org/x/net v0.6.0 // indirect
+	golang.org/x/net v0.7.0 // indirect
 	golang.org/x/oauth2 v0.5.0 // indirect
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
@@ -76,5 +78,3 @@ require (
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-require github.com/getsentry/sentry-go v0.18.0 // indirect

@@ -81,22 +81,21 @@ Edit this once you have created your source
 			}
 		}
 
-		e := discovery.Engine{
-			Name: "source-template",
-			NATSOptions: &connect.NATSOptions{
-				NumRetries:        -1,
-				RetryDelay:        5 * time.Second,
-				Servers:           natsServers,
-				ConnectionName:    fmt.Sprintf("%v.%v", natsNamePrefix, hostname),
-				ConnectionTimeout: (10 * time.Second), // TODO: Make configurable
-				MaxReconnects:     999,                // We are in a container so wait forever
-				ReconnectWait:     2 * time.Second,
-				ReconnectJitter:   2 * time.Second,
-				TokenClient:       tokenClient,
-			},
-			NATSQueueName:         "source-template", // This should be the same as your engine name
-			MaxParallelExecutions: maxParallel,
+		e := discovery.NewEngine()
+		e.Name = "source-template"
+		e.NATSOptions = &connect.NATSOptions{
+			NumRetries:        -1,
+			RetryDelay:        5 * time.Second,
+			Servers:           natsServers,
+			ConnectionName:    fmt.Sprintf("%v.%v", natsNamePrefix, hostname),
+			ConnectionTimeout: (10 * time.Second), // TODO: Make configurable
+			MaxReconnects:     999,                // We are in a container so wait forever
+			ReconnectWait:     2 * time.Second,
+			ReconnectJitter:   2 * time.Second,
+			TokenClient:       tokenClient,
 		}
+		e.NATSQueueName = "source-template" // This should be the same as your engine name
+		e.MaxParallelExecutions = maxParallel
 
 		// ⚠️ Here is where you add your sources
 		colourNameSource := sources.ColourNameSource{}
