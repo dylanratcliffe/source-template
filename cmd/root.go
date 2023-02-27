@@ -81,7 +81,12 @@ Edit this once you have created your source
 			}
 		}
 
-		e := discovery.NewEngine()
+		e, err := discovery.NewEngine()
+		if err != nil {
+			log.WithFields(log.Fields{
+				"error": err.Error(),
+			}).Fatal("Error initializing Engine")
+		}
 		e.Name = "source-template"
 		e.NATSOptions = &connect.NATSOptions{
 			NumRetries:        -1,
