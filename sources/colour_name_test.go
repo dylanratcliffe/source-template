@@ -33,7 +33,7 @@ func TestGet(t *testing.T) {
 			Query:     "UpsideDownBlack",
 			Method:    sdp.RequestMethod_GET,
 			ExpectedError: &ExpectedError{
-				Type:             sdp.ItemRequestError_NOTFOUND,
+				Type:             sdp.QueryError_NOTFOUND,
 				ErrorStringRegex: regexp.MustCompile("not recognized"),
 				Scope:            "global",
 			},
@@ -45,7 +45,7 @@ func TestGet(t *testing.T) {
 			Query:     "Red",
 			Method:    sdp.RequestMethod_GET,
 			ExpectedError: &ExpectedError{
-				Type:             sdp.ItemRequestError_NOSCOPE,
+				Type:             sdp.QueryError_NOSCOPE,
 				ErrorStringRegex: regexp.MustCompile("colours are only supported"),
 				Scope:            "wonkySpace",
 			},
@@ -72,7 +72,7 @@ func TestList(t *testing.T) {
 			ItemScope: "somethingElse",
 			Method:    sdp.RequestMethod_LIST,
 			ExpectedError: &ExpectedError{
-				Type:             sdp.ItemRequestError_NOSCOPE,
+				Type:             sdp.QueryError_NOSCOPE,
 				ErrorStringRegex: regexp.MustCompile("colours are only supported"),
 				Scope:            "somethingElse",
 			},

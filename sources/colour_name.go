@@ -212,8 +212,8 @@ func (s *ColourNameSource) Scopes() []string {
 // long-running actions
 func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) (*sdp.Item, error) {
 	if scope != "global" {
-		return nil, &sdp.ItemRequestError{
-			ErrorType:   sdp.ItemRequestError_NOSCOPE,
+		return nil, &sdp.QueryError{
+			ErrorType:   sdp.QueryError_NOSCOPE,
 			ErrorString: "colours are only supported in the 'global' scope",
 			Scope:       scope,
 		}
@@ -232,14 +232,14 @@ func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) 
 	if !found {
 		// If it wasn't found then return an error
 		//
-		// Sources should return errors of type sdp.ItemRequestError. Details of
+		// Sources should return errors of type sdp.QueryError. Details of
 		// what these errors should contain can be found in the SDP
 		// documentation: https://github.com/overmindtech/sdp#errors
 		//
 		// Or the Go Docs:
-		// https://pkg.go.dev/github.com/overmindtech/sdp-go#ItemRequestError_ErrorType
-		return nil, &sdp.ItemRequestError{
-			ErrorType:   sdp.ItemRequestError_NOTFOUND,
+		// https://pkg.go.dev/github.com/overmindtech/sdp-go#QueryError_ErrorType
+		return nil, &sdp.QueryError{
+			ErrorType:   sdp.QueryError_NOTFOUND,
 			ErrorString: fmt.Sprintf("colour %v not recognized", query),
 			Scope:       "global",
 		}
@@ -254,8 +254,8 @@ func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) 
 
 	// Return a OTHER error of something goes wrong here
 	if err != nil {
-		return nil, &sdp.ItemRequestError{
-			ErrorType:   sdp.ItemRequestError_OTHER,
+		return nil, &sdp.QueryError{
+			ErrorType:   sdp.QueryError_OTHER,
 			ErrorString: err.Error(),
 			Scope:       "global",
 		}
@@ -271,7 +271,7 @@ func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) 
 		// (or system) could execute here. However for the purposes of this
 		// example we are going to say that colours aren't "related" to each
 		// other at all
-		LinkedItemRequests: []*sdp.ItemRequest{},
+		LinkedItemQueries: []*sdp.Query{},
 	}
 
 	return &item, nil
@@ -294,7 +294,7 @@ func (s *ColourNameSource) List(ctx context.Context, scope string) ([]*sdp.Item,
 	}
 
 	// NOTE: If we were to find nothing, we should return a
-	// `sdp.ItemRequestError_NOTFOUND` to indicate that we successfully looked
+	// `sdp.QueryError_NOTFOUND` to indicate that we successfully looked
 	// for items, but didn't find any. This result will then be cached. If a
 	// source returns no items and no error nothing will be cached.
 

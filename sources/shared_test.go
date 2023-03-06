@@ -13,7 +13,7 @@ import (
 
 type ExpectedError struct {
 	// The expected type of the error
-	Type sdp.ItemRequestError_ErrorType
+	Type sdp.QueryError_ErrorType
 
 	// A pointer to a regex that will be used to validate the error message,
 	// leave as `nil`if you don't want to check this
@@ -81,10 +81,10 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					t.Error("expected error but got nil")
 				}
 
-				ire, ok := err.(*sdp.ItemRequestError)
+				ire, ok := err.(*sdp.QueryError)
 
 				if !ok {
-					t.Fatalf("error returned was type %T, expected *sdp.ItemRequestError", err)
+					t.Fatalf("error returned was type %T, expected *sdp.QueryError", err)
 				}
 
 				if ee.Type != ire.ErrorType {
