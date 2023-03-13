@@ -16,7 +16,7 @@ func TestGet(t *testing.T) {
 			Name:          "Getting a known colour",
 			ItemScope:     "global",
 			Query:         "GreenYellow",
-			Method:        sdp.RequestMethod_GET,
+			Method:        sdp.QueryMethod_GET,
 			ExpectedError: nil,
 			ExpectedItems: &ExpectedItems{
 				NumItems: 1,
@@ -31,7 +31,7 @@ func TestGet(t *testing.T) {
 			Name:      "Getting an unknown colour",
 			ItemScope: "global",
 			Query:     "UpsideDownBlack",
-			Method:    sdp.RequestMethod_GET,
+			Method:    sdp.QueryMethod_GET,
 			ExpectedError: &ExpectedError{
 				Type:             sdp.QueryError_NOTFOUND,
 				ErrorStringRegex: regexp.MustCompile("not recognized"),
@@ -43,7 +43,7 @@ func TestGet(t *testing.T) {
 			Name:      "Getting an unknown scope",
 			ItemScope: "wonkySpace",
 			Query:     "Red",
-			Method:    sdp.RequestMethod_GET,
+			Method:    sdp.QueryMethod_GET,
 			ExpectedError: &ExpectedError{
 				Type:             sdp.QueryError_NOSCOPE,
 				ErrorStringRegex: regexp.MustCompile("colours are only supported"),
@@ -61,7 +61,7 @@ func TestList(t *testing.T) {
 		{
 			Name:          "Using correct scope",
 			ItemScope:     "global",
-			Method:        sdp.RequestMethod_LIST,
+			Method:        sdp.QueryMethod_LIST,
 			ExpectedError: nil,
 			ExpectedItems: &ExpectedItems{
 				NumItems: 147,
@@ -70,7 +70,7 @@ func TestList(t *testing.T) {
 		{
 			Name:      "Using incorrect scope",
 			ItemScope: "somethingElse",
-			Method:    sdp.RequestMethod_LIST,
+			Method:    sdp.QueryMethod_LIST,
 			ExpectedError: &ExpectedError{
 				Type:             sdp.QueryError_NOSCOPE,
 				ErrorStringRegex: regexp.MustCompile("colours are only supported"),
