@@ -43,7 +43,7 @@ type SourceTest struct {
 	// The query to be passed
 	Query string
 	// The method that should be used
-	Method sdp.RequestMethod
+	Method sdp.QueryMethod
 	// Details of the expected error, `nil` means no error
 	ExpectedError *ExpectedError
 	// The expected items
@@ -58,9 +58,9 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 			var err error
 
 			switch test.Method {
-			case sdp.RequestMethod_LIST:
+			case sdp.QueryMethod_LIST:
 				items, err = source.List(context.Background(), test.ItemScope)
-			case sdp.RequestMethod_SEARCH:
+			case sdp.QueryMethod_SEARCH:
 				searchable, ok := source.(discovery.SearchableSource)
 
 				if !ok {
@@ -68,11 +68,11 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 				}
 
 				items, err = searchable.Search(context.Background(), test.ItemScope, test.Query)
-			case sdp.RequestMethod_GET:
+			case sdp.QueryMethod_GET:
 				item, err = source.Get(context.Background(), test.ItemScope, test.Query)
 				items = []*sdp.Item{item}
 			default:
-				t.Fatalf("Test Method invalid: %v. Should be one of: sdp.RequestMethod_LIST, sdp.RequestMethod_SEARCH, sdp.RequestMethod_GET", test.Method)
+				t.Fatalf("Test Method invalid: %v. Should be one of: sdp.QueryMethod_LIST, sdp.QueryMethod_SEARCH, sdp.QueryMethod_GET", test.Method)
 			}
 
 			// If an error was expected then validate that it was found
