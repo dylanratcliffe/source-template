@@ -4,8 +4,8 @@ go 1.19
 
 // Direct dependencies
 require (
-	github.com/nats-io/jwt/v2 v2.3.0
-	github.com/nats-io/nkeys v0.3.0
+	github.com/nats-io/jwt/v2 v2.4.0
+	github.com/nats-io/nkeys v0.4.4
 	github.com/overmindtech/connect v0.8.5
 	github.com/overmindtech/discovery v0.18.2
 	github.com/overmindtech/sdp-go v0.19.0
