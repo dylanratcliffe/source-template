@@ -29,6 +29,7 @@ jobs:
     permissions:
       contents: read # required for checkout
       id-token: write # mint AWS credentials through OIDC
+      packages: write
 
     strategy:
       fail-fast: false
