@@ -271,7 +271,7 @@ func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) 
 		// (or system) could execute here. However for the purposes of this
 		// example we are going to say that colours aren't "related" to each
 		// other at all
-		LinkedItemQueries: []*sdp.Query{},
+		LinkedItemQueries: []*sdp.LinkedItemQuery{},
 	}
 
 	return &item, nil
