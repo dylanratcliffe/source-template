@@ -44,6 +44,8 @@ github.com/bufbuild/connect-go v1.7.0 h1:MGp82v7SCza+3RhsVhV7aMikwxvI3ZfD72YiGt8
 github.com/bufbuild/connect-go v1.7.0/go.mod h1:GmMJYR6orFqD0Y6ZgX8pwQ8j9baizDrIQMm1/a6LnHk=
 github.com/bufbuild/connect-go v1.8.0 h1:srluNkFkZBfSfg9Qb6DrO+5nMaxix//h2ctrHZhMGKc=
 github.com/bufbuild/connect-go v1.8.0/go.mod h1:GmMJYR6orFqD0Y6ZgX8pwQ8j9baizDrIQMm1/a6LnHk=
+github.com/bufbuild/connect-go v1.9.0 h1:JIgAeNuFpo+SUPfU19Yt5TcWlznsN5Bv10/gI/6Pjoc=
+github.com/bufbuild/connect-go v1.9.0/go.mod h1:CAIePUgkDR5pAFaylSMtNK45ANQjp9JvpluG20rhpV8=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=
@@ -159,6 +161,8 @@ github.com/klauspost/compress v1.16.5 h1:IFV2oUNUzZaz+XyusxpLzpzS8Pt5rh0Z16For/d
 github.com/klauspost/compress v1.16.5/go.mod h1:ntbaceVETuRiXiv4DpjP66DpAtAGkEQskQzEyD//IeE=
 github.com/klauspost/compress v1.16.6 h1:91SKEy4K37vkp255cJ8QesJhjyRO0hn9i9G0GoUwLsk=
 github.com/klauspost/compress v1.16.6/go.mod h1:ntbaceVETuRiXiv4DpjP66DpAtAGkEQskQzEyD//IeE=
+github.com/klauspost/compress v1.16.7 h1:2mk3MPGNzKyxErAw8YaohYh69+pa4sIQSC0fPGCFR9I=
+github.com/klauspost/compress v1.16.7/go.mod h1:ntbaceVETuRiXiv4DpjP66DpAtAGkEQskQzEyD//IeE=
 github.com/kr/fs v0.1.0/go.mod h1:FFnZGqtBN9Gxj7eW1uZ42v5BccTP0vu6NEaFoC2HwRg=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=
 github.com/kr/pretty v0.2.1/go.mod h1:ipq/a2n7PKx3OHsz4KJII5eveXtPO4qwEXGdVfWzfnI=
@@ -192,8 +196,12 @@ github.com/overmindtech/connect v0.11.2 h1:CUJqfvwcsQINeUNKhA3c/+/o4c+pprPoPAGWu
 github.com/overmindtech/connect v0.11.2/go.mod h1:2jvFOwFhaiyx+lM0sboSvfXcBEABrpCKZsHPHMUZM9U=
 github.com/overmindtech/connect v0.11.3 h1:VTtcL3PZRjZ+9UXb8EjgXmru5ePFrxszV+jK5PQbcM4=
 github.com/overmindtech/connect v0.11.3/go.mod h1:Tclc5gvkp59oEFkFvFcSs4KzTnYBxJeWIF3BTj5tjx4=
+github.com/overmindtech/connect v0.11.4 h1:oDsI1ZGeg15QomXGPh6i2rUVFoKyNiAa7GLI/x+tUYo=
+github.com/overmindtech/connect v0.11.4/go.mod h1:rK/lMyAVJoMOu3EAu+xJmizijhomnwiVKXWKiJ85Evw=
 github.com/overmindtech/discovery v0.21.4 h1:jnt/4K8eRfr2alu7KlD9woMzHAOVts1uP1rKiYFB8qM=
 github.com/overmindtech/discovery v0.21.4/go.mod h1:t53X1tENVfeLkQxpQXCf2G+1SxK3wWmUoNZK/TPC+MQ=
+github.com/overmindtech/discovery v0.21.5 h1:hbqABouIgqnP3cJI2yEpVtq/k7OcacR4loTrKboBPbk=
+github.com/overmindtech/discovery v0.21.5/go.mod h1:3ph6qeCOMXOoBE/Ek1m1dnu0F6vTjE/dlc8gucBm6YY=
 github.com/overmindtech/sdp-go v0.32.2 h1:TXacjNb1PKF4lj96ZRmFybmc7oes4vj6tOQElRqJ2cE=
 github.com/overmindtech/sdp-go v0.32.2/go.mod h1:W6+M5cRKe+eNj0Ik9i/tXTIRLZOYlrHwQSnZ3haFVfw=
 github.com/overmindtech/sdp-go v0.33.0 h1:1gdckSLO4ykjWPd8H+iZg2YKhX/K5N3JJsJ7wXBi9h8=
@@ -204,6 +212,8 @@ github.com/overmindtech/sdp-go v0.34.2 h1:JJ0Riu5ReQ1z155nd5t/0Zrox3W3zWMC01fB7p
 github.com/overmindtech/sdp-go v0.34.2/go.mod h1:LnTjr8eX6nLxbF5lW5zSC3mnoJBxdqTplz0Rc6FisrA=
 github.com/overmindtech/sdp-go v0.34.3 h1:83UtY5FPX7AxoLKnd6xFEv/CJoM+QfkYFZat93uQPtA=
 github.com/overmindtech/sdp-go v0.34.3/go.mod h1:VbBEazkkZEM0JYaIcKT6/EybQmbjQ17dezSL+m0k570=
+github.com/overmindtech/sdp-go v0.36.0 h1:hbfs39GuVZnlUKyvqQzE3pilhZPoK0wVzOD5V30CmHI=
+github.com/overmindtech/sdp-go v0.36.0/go.mod h1:LIUppm58V+JpNJsPCXiBOwlySgQ9uacsC+Hfl5D/zQo=
 github.com/overmindtech/sdpcache v1.5.0 h1:QzHWQm1KGN9rNHPb/VZvz7WDCsyKOuVLlNUGF2CIFGc=
 github.com/overmindtech/sdpcache v1.5.0/go.mod h1:GFMMle860EWMDQXbk6dhLVSQrV0YlEqqJ6/VNxINb0o=
 github.com/pelletier/go-toml/v2 v2.0.7 h1:muncTPStnKRos5dpVKULv2FVd4bMOhNePj9CjgDb8Us=
@@ -592,6 +602,8 @@ google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp0
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
 google.golang.org/protobuf v1.30.0 h1:kPPoIgf3TsEvrm0PFe15JQ+570QVxYzEvvHqChK+cng=
 google.golang.org/protobuf v1.30.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
+google.golang.org/protobuf v1.31.0 h1:g0LDEJHgrBl9N9r17Ru3sqWhkIx2NB67okBHPwC7hs8=
+google.golang.org/protobuf v1.31.0/go.mod h1:HV8QOd/L58Z+nl8r43ehVNZIU/HEI6OcFqwMG9pJV4I=
 gopkg.in/check.v1 v0.0.0-20161208181325-20d25e280405/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127/go.mod h1:Co6ibVJAznAaIkqp8huTwlJQCZ016jof/cbN4VW5Yz0=
 gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c h1:Hei/4ADfdWqJk1ZMxUNpqntNwaWcugrBjAiHlqqRiVk=

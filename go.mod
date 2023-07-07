@@ -6,9 +6,9 @@ go 1.19
 require (
 	github.com/nats-io/jwt/v2 v2.4.1
 	github.com/nats-io/nkeys v0.4.4
-	github.com/overmindtech/connect v0.11.3
-	github.com/overmindtech/discovery v0.21.4
-	github.com/overmindtech/sdp-go v0.34.3
+	github.com/overmindtech/connect v0.11.4
+	github.com/overmindtech/discovery v0.21.5
+	github.com/overmindtech/sdp-go v0.36.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
@@ -18,7 +18,7 @@ require (
 // Transitive dependencies
 require (
 	github.com/auth0/go-jwt-middleware/v2 v2.1.0 // indirect
-	github.com/bufbuild/connect-go v1.8.0 // indirect
+	github.com/bufbuild/connect-go v1.9.0 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/getsentry/sentry-go v0.22.0 // indirect
@@ -29,7 +29,7 @@ require (
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/klauspost/compress v1.16.6 // indirect
+	github.com/klauspost/compress v1.16.7 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/nats-io/nats.go v1.27.1 // indirect
@@ -54,7 +54,7 @@ require (
 	golang.org/x/sys v0.9.0 // indirect
 	golang.org/x/text v0.10.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
-	google.golang.org/protobuf v1.30.0 // indirect
+	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/square/go-jose.v2 v2.6.0 // indirect
