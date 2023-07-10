@@ -125,14 +125,12 @@ Edit this once you have created your source
 		}).Debug("Starting healthcheck server")
 
 		go func() {
-			log.Fatal(http.ListenAndServe(":8080", nil))
-		}()
+			err := http.ListenAndServe(":8080", nil)
 
-		if err != nil {
-			log.WithFields(log.Fields{
-				"error": err,
-			}).Fatal("Could not start HTTP server for /healthz health checks")
-		}
+			if err != nil {
+				log.WithError(err).Fatal("Could not start HTTP server for /healthz health checks")
+			}
+		}()
 
 		err = e.Start()
 
