@@ -7,7 +7,7 @@ require (
 	github.com/nats-io/jwt/v2 v2.4.1
 	github.com/nats-io/nkeys v0.4.4
 	github.com/overmindtech/discovery v0.22.1
-	github.com/overmindtech/sdp-go v0.41.0
+	github.com/overmindtech/sdp-go v0.41.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
@@ -17,7 +17,7 @@ require (
 // Transitive dependencies
 require (
 	github.com/auth0/go-jwt-middleware/v2 v2.1.0 // indirect
-	github.com/bufbuild/connect-go v1.9.0 // indirect
+	github.com/bufbuild/connect-go v1.10.0 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
 	github.com/getsentry/sentry-go v0.22.0 // indirect
