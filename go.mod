@@ -6,8 +6,8 @@ go 1.19
 require (
 	github.com/nats-io/jwt/v2 v2.4.1
 	github.com/nats-io/nkeys v0.4.4
-	github.com/overmindtech/discovery v0.22.1
-	github.com/overmindtech/sdp-go v0.41.1
+	github.com/overmindtech/discovery v0.23.0
+	github.com/overmindtech/sdp-go v0.43.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.7.0
 	github.com/spf13/pflag v1.0.5
@@ -20,7 +20,7 @@ require (
 	github.com/bufbuild/connect-go v1.10.0 // indirect
 	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.6.0 // indirect
-	github.com/getsentry/sentry-go v0.22.0 // indirect
+	github.com/getsentry/sentry-go v0.23.0 // indirect
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
