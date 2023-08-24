@@ -3,6 +3,8 @@ FROM golang:1.21 as builder
 ARG TARGETOS
 ARG TARGETARCH
 
+ENV GOEXPERIMENT=loopvar
+
 WORKDIR /workspace
 
 # Copy the Go Modules manifests
