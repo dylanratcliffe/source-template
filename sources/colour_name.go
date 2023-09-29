@@ -210,7 +210,7 @@ func (s *ColourNameSource) Scopes() []string {
 // ctx parameter contains a golang context object which should be used to allow
 // this source to timeout or be cancelled when executing potentially
 // long-running actions
-func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) (*sdp.Item, error) {
+func (s *ColourNameSource) Get(ctx context.Context, scope string, query string, ignoreCache bool) (*sdp.Item, error) {
 	if scope != "global" {
 		return nil, &sdp.QueryError{
 			ErrorType:   sdp.QueryError_NOSCOPE,
@@ -278,13 +278,13 @@ func (s *ColourNameSource) Get(ctx context.Context, scope string, query string) 
 }
 
 // List Lists all items in a given scope
-func (s *ColourNameSource) List(ctx context.Context, scope string) ([]*sdp.Item, error) {
+func (s *ColourNameSource) List(ctx context.Context, scope string, ignoreCache bool) ([]*sdp.Item, error) {
 	items := make([]*sdp.Item, 0)
 
 	// Loop over all the colours and use a Get() request to resolve them to an
 	// item
 	for name := range Colours {
-		item, err := s.Get(ctx, scope, name)
+		item, err := s.Get(ctx, scope, name, ignoreCache)
 
 		if err != nil {
 			return nil, err
