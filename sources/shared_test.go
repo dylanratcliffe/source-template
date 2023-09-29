@@ -59,7 +59,7 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 
 			switch test.Method {
 			case sdp.QueryMethod_LIST:
-				items, err = source.List(context.Background(), test.ItemScope)
+				items, err = source.List(context.Background(), test.ItemScope, false)
 			case sdp.QueryMethod_SEARCH:
 				searchable, ok := source.(discovery.SearchableSource)
 
@@ -67,9 +67,9 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					t.Fatal("Supplied source did not fulfill discovery.SearchableSource interface. Cannot execute search tests against this source")
 				}
 
-				items, err = searchable.Search(context.Background(), test.ItemScope, test.Query)
+				items, err = searchable.Search(context.Background(), test.ItemScope, test.Query, false)
 			case sdp.QueryMethod_GET:
-				item, err = source.Get(context.Background(), test.ItemScope, test.Query)
+				item, err = source.Get(context.Background(), test.ItemScope, test.Query, false)
 				items = []*sdp.Item{item}
 			default:
 				t.Fatalf("Test Method invalid: %v. Should be one of: sdp.QueryMethod_LIST, sdp.QueryMethod_SEARCH, sdp.QueryMethod_GET", test.Method)
