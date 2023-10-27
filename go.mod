@@ -5,7 +5,7 @@ go 1.21
 // Direct dependencies
 require (
 	github.com/nats-io/jwt/v2 v2.5.2
-	github.com/nats-io/nkeys v0.4.5
+	github.com/nats-io/nkeys v0.4.6
 	github.com/overmindtech/discovery v0.25.1
 	github.com/overmindtech/sdp-go v0.53.0
 	github.com/sirupsen/logrus v1.9.3
