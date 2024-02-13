@@ -72,6 +72,7 @@ jobs:
         with:
           builder: ${{ steps.setup-builder.outputs.name }}
           context: .
+          sbom: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: build/package/${{ matrix.dockerfile }}
