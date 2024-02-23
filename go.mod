@@ -4,7 +4,7 @@ go 1.22.0
 
 // Direct dependencies
 require (
-	github.com/nats-io/jwt/v2 v2.5.4
+	github.com/nats-io/jwt/v2 v2.5.5
 	github.com/nats-io/nkeys v0.4.7
 	github.com/overmindtech/discovery v0.26.3
 	github.com/overmindtech/sdp-go v0.66.2
