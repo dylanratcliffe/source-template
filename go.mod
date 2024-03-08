@@ -6,7 +6,7 @@ go 1.22.0
 require (
 	github.com/nats-io/jwt/v2 v2.5.5
 	github.com/nats-io/nkeys v0.4.7
-	github.com/overmindtech/discovery v0.26.4
+	github.com/overmindtech/discovery v0.26.5
 	github.com/overmindtech/sdp-go v0.67.1
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.0
@@ -35,7 +35,7 @@ require (
 	github.com/nats-io/nats.go v1.33.1 // indirect
 	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/overmindtech/api-client v0.14.0 // indirect
-	github.com/overmindtech/sdpcache v1.6.3 // indirect
+	github.com/overmindtech/sdpcache v1.6.4 // indirect
 	github.com/pelletier/go-toml/v2 v2.1.0 // indirect
 	github.com/rogpeppe/go-internal v1.10.0 // indirect
 	github.com/sagikazarmark/locafero v0.4.0 // indirect
