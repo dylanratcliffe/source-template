@@ -22,7 +22,6 @@ require (
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/getsentry/sentry-go v0.27.0 // indirect
-	github.com/go-jose/go-jose/v3 v3.0.1 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
@@ -63,7 +62,7 @@ require (
 )
 
 require (
-	github.com/go-jose/go-jose/v4 v4.0.0 // indirect
+	github.com/go-jose/go-jose/v4 v4.0.1 // indirect
 	golang.org/x/sync v0.6.0 // indirect
 	gopkg.in/go-jose/go-jose.v2 v2.6.2 // indirect
 )
