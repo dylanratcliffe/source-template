@@ -9,7 +9,7 @@ require (
 	github.com/overmindtech/discovery v0.27.6
 	github.com/overmindtech/sdp-go v0.76.0
 	github.com/sirupsen/logrus v1.9.3
-	github.com/spf13/cobra v1.8.0
+	github.com/spf13/cobra v1.8.1
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.19.0
 	go.uber.org/automaxprocs v1.5.3
