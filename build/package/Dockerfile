@@ -20,7 +20,7 @@ COPY sources/ sources/
 
 # Build
 RUN --mount=type=cache,target=/root/.cache/go-build \
-    GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -o source main.go
+    GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -ldflags="-s -w" -trimpath -o source main.go
 
 # Use distroless as minimal base image to package the source binary
 # Refer to https://github.com/GoogleContainerTools/distroless for more details
