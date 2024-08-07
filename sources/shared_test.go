@@ -2,6 +2,7 @@ package sources
 
 import (
 	"context"
+	"errors"
 	"regexp"
 	"testing"
 
@@ -29,7 +30,7 @@ type ExpectedItems struct {
 	NumItems int
 
 	// A list of expected attributes for the items, will be checked in order
-	// with the first set of attributes neeing to match those of the first item
+	// with the first set of attributes needing to match those of the first item
 	// etc. Note that this doesn't need to have the same number of entries as
 	// there are items
 	ExpectedAttributes []map[string]interface{}
@@ -81,25 +82,24 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					t.Error("expected error but got nil")
 				}
 
-				ire, ok := err.(*sdp.QueryError)
-
-				if !ok {
+				var ire *sdp.QueryError
+				if !errors.As(err, &ire) {
 					t.Fatalf("error returned was type %T, expected *sdp.QueryError", err)
 				}
 
-				if ee.Type != ire.ErrorType {
-					t.Fatalf("error type was %v, expected %v", ire.ErrorType, ee.Type)
+				if ee.Type != ire.GetErrorType() {
+					t.Fatalf("error type was %v, expected %v", ire.GetErrorType(), ee.Type)
 				}
 
 				if ee.Scope != "" {
-					if ee.Scope != ire.Scope {
-						t.Fatalf("error scope was %v, expected %v", ire.Scope, ee.Scope)
+					if ee.Scope != ire.GetScope() {
+						t.Fatalf("error scope was %v, expected %v", ire.GetScope(), ee.Scope)
 					}
 				}
 
 				if ee.ErrorStringRegex != nil {
-					if !ee.ErrorStringRegex.MatchString(ire.ErrorString) {
-						t.Fatalf("error string did not match regex %v, raw value: %v", ee.ErrorStringRegex, ire.ErrorString)
+					if !ee.ErrorStringRegex.MatchString(ire.GetErrorString()) {
+						t.Fatalf("error string did not match regex %v, raw value: %v", ee.ErrorStringRegex, ire.GetErrorString())
 					}
 				}
 			} else {
@@ -120,7 +120,7 @@ func RunSourceTests(t *testing.T, tests []SourceTest, source discovery.Source) {
 					relevantItem := items[i]
 
 					for key, expectedValue := range expectedAttributes {
-						value, err := relevantItem.Attributes.Get(key)
+						value, err := relevantItem.GetAttributes().Get(key)
 
 						if err != nil {
 							t.Error(err)

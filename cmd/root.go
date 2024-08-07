@@ -124,7 +124,13 @@ Edit this once you have created your source
 		}).Debug("Starting healthcheck server")
 
 		go func() {
-			err := http.ListenAndServe(":8080", nil)
+			server := &http.Server{ //G114: Use of net/http serve function that has no support for setting timeouts
+				Addr:         ":8080",
+				Handler:      nil,
+				ReadTimeout:  5 * time.Second,
+				WriteTimeout: 10 * time.Second,
+			}
+			err := server.ListenAndServe()
 
 			if err != nil {
 				log.WithError(err).Fatal("Could not start HTTP server for /healthz health checks")
@@ -195,7 +201,7 @@ func init() {
 	rootCmd.PersistentFlags().String("your-custom-flag", "someDefaultValue.conf", "Description of what your option is meant to do")
 
 	// Bind these to viper
-	viper.BindPFlags(rootCmd.PersistentFlags())
+	cobra.CheckErr(viper.BindPFlags(rootCmd.PersistentFlags()))
 
 	// Run this before we do anything to set up the loglevel
 	rootCmd.PersistentPreRun = func(cmd *cobra.Command, args []string) {
@@ -211,7 +217,13 @@ func init() {
 		cmd.PersistentFlags().VisitAll(func(f *pflag.Flag) {
 			// Bind the flag to viper only if it has a non-empty default
 			if f.DefValue != "" || f.Changed {
-				viper.BindPFlag(f.Name, f)
+				err := viper.BindPFlag(f.Name, f)
+				if err != nil {
+					log.WithFields(log.Fields{
+						"error": err,
+						"flag":  f.Name,
+					}).Fatal("Could not bind flag to viper")
+				}
 			}
 		})
 	}
@@ -247,11 +259,11 @@ func createTokenClient(natsJWT string, natsNKeySeed string) (auth.TokenClient, e
 	}
 
 	if _, err = jwt.DecodeUserClaims(natsJWT); err != nil {
-		return nil, fmt.Errorf("could not parse nats-jwt: %v", err)
+		return nil, fmt.Errorf("could not parse nats-jwt: %w", err)
 	}
 
 	if kp, err = nkeys.FromSeed([]byte(natsNKeySeed)); err != nil {
-		return nil, fmt.Errorf("could not parse nats-nkey-seed: %v", err)
+		return nil, fmt.Errorf("could not parse nats-nkey-seed: %w", err)
 	}
 
 	return auth.NewBasicTokenClient(natsJWT, kp), nil
