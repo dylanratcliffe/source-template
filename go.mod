@@ -7,7 +7,7 @@ require (
 	github.com/nats-io/jwt/v2 v2.5.8
 	github.com/nats-io/nkeys v0.4.7
 	github.com/overmindtech/discovery v0.27.7
-	github.com/overmindtech/sdp-go v0.92.2
+	github.com/overmindtech/sdp-go v0.93.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.1
 	github.com/spf13/pflag v1.0.5
@@ -18,7 +18,7 @@ require (
 // Transitive dependencies
 require (
 	connectrpc.com/connect v1.16.2 // indirect
-	github.com/auth0/go-jwt-middleware/v2 v2.2.1 // indirect
+	github.com/auth0/go-jwt-middleware/v2 v2.2.2 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
 	github.com/getsentry/sentry-go v0.28.1 // indirect
@@ -60,6 +60,6 @@ require (
 
 require (
 	github.com/go-jose/go-jose/v4 v4.0.4 // indirect
-	golang.org/x/sync v0.7.0 // indirect
+	golang.org/x/sync v0.8.0 // indirect
 	gopkg.in/go-jose/go-jose.v2 v2.6.3 // indirect
 )
