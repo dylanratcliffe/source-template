@@ -6,7 +6,7 @@ go 1.22.5
 require (
 	github.com/nats-io/jwt/v2 v2.7.0
 	github.com/nats-io/nkeys v0.4.7
-	github.com/overmindtech/discovery v0.28.0
+	github.com/overmindtech/discovery v0.28.1
 	github.com/overmindtech/sdp-go v0.94.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/spf13/cobra v1.8.1
