@@ -1,3 +1,5 @@
+**NOTE!:** This repository has been archived for the time being as we change the way source connect & authenticate. As this standardises again and as we start adding more sources more rapidly we might bring this back
+
 # Source Template
 
 The template repository is used for creating secondary sources written in Golang.
